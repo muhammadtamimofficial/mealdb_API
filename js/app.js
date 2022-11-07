@@ -42,7 +42,7 @@ const showDetails = (mealId) => {
 }
 const showDetailsCard = (data) => {
     console.log(data);
-
+    showDeatilsCard.innerHTML = '';
     const div = document.createElement('div');
     div.classList.add('card', 'mb-3', 'w-75', 'mx-auto');
     div.innerHTML = `
