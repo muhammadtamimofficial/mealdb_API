@@ -2,6 +2,12 @@ const inputFeild = document.getElementById('input-feild');
 const searchReasult = document.getElementById('search-result');
 const showDeatilsCard = document.getElementById('showDeatilsCard')
 // const inputBtn = document.getElementById('feild-btn');
+inputFeild.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        document.getElementById('feild-btn').click();
+        console.log(inputFeild.value);
+    }
+})
 document.getElementById('feild-btn').addEventListener('click', function () {
     // const inputFeild = document.getElementById('input-feild');
     const inputValue = inputFeild.value;
