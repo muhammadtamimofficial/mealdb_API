@@ -3,6 +3,7 @@ const inputFeild = document.getElementById('input-feild');
 const searchReasult = document.getElementById('search-result');
 const showDeatilsCard = document.getElementById('showDeatilsCard')
 const inputBtn = document.getElementById('feild-btn');
+const error = document.getElementById('error');
 // end input feild , input button , search Result cotainar and show deatils card keep with ID 
 
 // if press enter key then click on search button ,start 
@@ -12,13 +13,27 @@ inputFeild.addEventListener('keypress', (event) => {
     }
 })
 // if press enter key then click on search button ,end 
-
-// load api and convert on json , start
-loadData = (ItemName) => {
+//convart json api url 
+convertJson = (ItemName) => {
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${ItemName}`;
     fetch(url)
         .then(res => res.json())
         .then(data => displayResult(data.meals))
+}
+// load api and convert on json , start
+loadData = (ItemName) => {
+    // clear error text 
+    error.innerHTML = '';
+    if (ItemName === '' || ItemName === ' ') {
+        const div = document.createElement('div');
+        div.innerHTML = `<h1 class="text-danger pt-4">Empty search is forbidden</h1>`
+        console.log(div);
+        error.appendChild(div);
+        console.log(searchReasult);
+    }
+    else {
+        convertJson(ItemName)
+    }
     // clear input feild and search reasults
     inputFeild.value = '';
     searchReasult.innerHTML = '';
@@ -94,4 +109,4 @@ const hideDetails = () => showDeatilsCard.innerHTML = '';
 
 
 
-loadData('');
+const displayData = convertJson('');
